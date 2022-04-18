@@ -9,13 +9,14 @@ import com.sun.j3d.utils.geometry.*;
 import java.applet.*;
 import com.sun.j3d.utils.applet.MainFrame;
 
-public class Graphics_Final extends Applet implements ItemListener {
+public class Graphics_Final extends Applet {
     public static void main(String[] args) {
         new MainFrame(new Graphics_Final(), 640, 480);
     }
 
     AmbientLight aLight;
     DirectionalLight dLight;
+    DirectionalLight dLight2;
     PointLight pLight;
     SpotLight sLight;
     SpotLight sLight2;
@@ -28,20 +29,6 @@ public class Graphics_Final extends Applet implements ItemListener {
         add(cv, BorderLayout.CENTER);
 
         Panel menu = new Panel();
-        menu.setLayout(new GridLayout(1,4));
-        add(menu, BorderLayout.SOUTH);
-        Checkbox mi = new Checkbox("Ambient", true);
-        menu.add(mi);
-        mi.addItemListener(this);
-        mi = new Checkbox("Directional", true);
-        menu.add(mi);
-        mi.addItemListener(this);
-        mi = new Checkbox("Point", true);
-        menu.add(mi);
-        mi.addItemListener(this);
-        mi = new Checkbox("Spot", true);
-        menu.add(mi);
-        mi.addItemListener(this);
 
         SimpleUniverse su = new SimpleUniverse(cv, 2);
         su.getViewingPlatform().setNominalViewingTransform();
@@ -54,49 +41,39 @@ public class Graphics_Final extends Applet implements ItemListener {
     Appearance ap;
     private BranchGroup createSceneGraph(TransformGroup vtg) {
         BranchGroup root = new BranchGroup();
-        //object
-        ap = new Appearance();
-        ap.setMaterial(new Material());
-        Sphere shape = new Sphere(0.5f, Sphere.GENERATE_NORMALS, 150, ap);
-        root.addChild(shape);
-        //view rotator
-        Alpha alpha = new Alpha(-1, 4000);
-        RotationInterpolator rotator = new RotationInterpolator(alpha, vtg);
         BoundingSphere bounds = new BoundingSphere();
         bounds.setRadius(2);
-        rotator.setSchedulingBounds(bounds);
-        root.addChild(rotator);
+        //object
+        ap = new Appearance();
+        Material mat = new Material();
+        mat.setDiffuseColor(100,0,0);
+        ap.setMaterial(mat);
+
+        Sphere shape = new Sphere(0.5f, Sphere.GENERATE_NORMALS, 150, ap);
+        Transform3D tr = new Transform3D();
+        tr.setScale(0.25);
+        TransformGroup tg = new TransformGroup(tr);
+        tg.addChild(shape);
+        root.addChild(tg);
+        //view rotator
+
         // background and lights
         Background background = new Background(0.5f, 0.5f, 0.5f);
         background.setApplicationBounds(bounds);
         root.addChild(background);
+
         aLight = new AmbientLight(true, new Color3f(Color.WHITE));
         aLight.setInfluencingBounds(bounds);
-        aLight.setCapability(PointLight.ALLOW_STATE_WRITE | PointLight.ALLOW_STATE_WRITE);
         root.addChild(aLight);
-        dLight = new DirectionalLight(new Color3f(Color.WHITE), new Vector3f(1f,1f,0f));
-        dLight.setCapability(PointLight.ALLOW_STATE_WRITE | PointLight.ALLOW_STATE_WRITE);
+        dLight = new DirectionalLight(new Color3f(Color.WHITE), new Vector3f(7f,10f,-55));
+        dLight.setInfluencingBounds(bounds);
+        dLight2 = new DirectionalLight(new Color3f(Color.WHITE), new Vector3f(20,-1,-5f));
         dLight.setInfluencingBounds(bounds);
         root.addChild(dLight);
 
 
-        return root;
-    }
 
-    public void itemStateChanged(ItemEvent itemEvent) {
-        Checkbox cmi = (Checkbox)itemEvent.getSource();
-        String label = cmi.getLabel();
-        boolean state = cmi.getState();
-        if("Ambient".equals(label)) {
-            aLight.setEnable(state);
-        } else if ("Directional".equals(label)) {
-            dLight.setEnable(state);
-        } else if ("Point".equals(label)) {
-            pLight.setEnable(state);
-        } else if ("Spot".equals(label)) {
-            sLight.setEnable(state);
-            sLight2.setEnable(state);
-        }
-        cmi.setState(state);
+
+        return root;
     }
 }
