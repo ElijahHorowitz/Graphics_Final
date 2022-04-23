@@ -2,6 +2,9 @@ import javax.vecmath.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.media.j3d.*;
+
+import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
+import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
 import com.sun.j3d.utils.universe.*;
 import com.sun.j3d.utils.geometry.*;
 import java.applet.*;
@@ -16,9 +19,6 @@ public class Graphics_Final extends Applet {
     AmbientLight aLight;
     DirectionalLight dLight;
     DirectionalLight dLight2;
-    PointLight pLight;
-    SpotLight sLight;
-    SpotLight sLight2;
 
     public void init() {
         // create canvas
@@ -38,29 +38,50 @@ public class Graphics_Final extends Applet {
     }
 
     Appearance ap;
+    Appearance bb;
     private BranchGroup createSceneGraph(TransformGroup vtg) {
         BranchGroup root = new BranchGroup();
         BoundingSphere bounds = new BoundingSphere();
         bounds.setRadius(2);
         //object
         ap = new Appearance();
+        bb = new Appearance();
+        Material grey = new Material();
         Material mat = new Material();
+        grey.setDiffuseColor(.5f,.5f,.5f);
         mat.setDiffuseColor(100,0,0);
         ap.setMaterial(mat);
 
-       // Sphere shape = new Sphere(0.5f, Sphere.GENERATE_NORMALS, 150, ap);
         Transform3D tr = new Transform3D();
+        Transform3D cylin = new Transform3D();
         tr.setScale(0.25);
+
         TransformGroup tg = new TransformGroup(tr);
-        //tg.addChild(shape);
-        Cylinder cy = new Cylinder(.25f,1,ap);
+        tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        tg.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+        Sphere shape = new Sphere(0.5f, Sphere.GENERATE_NORMALS, 150, ap);
+        tg.addChild(shape);
+        bb.setMaterial(grey);
+        Cylinder cy = new Cylinder(.1f,1,bb);
+        Vector3f vector = new Vector3f(-.2f,.1f , -.4f);
+
+        tg.setTransform(tr);
         tg.addChild(cy);
+
         root.addChild(tg);
 
         //view rotator
+        MouseRotate rotater = new MouseRotate(tg);
+        rotater.setSchedulingBounds(bounds);
+        tg.addChild(rotater);
+
+        MouseTranslate translator = new MouseTranslate(tg);
+        translator.setSchedulingBounds(bounds);
+        tg.addChild(translator);
+
 
         // background and lights
-        Background background = new Background(0.5f, 0.5f, 0.5f);
+        Background background = new Background(0f, 0f, 0f);
         background.setApplicationBounds(bounds);
         root.addChild(background);
 
