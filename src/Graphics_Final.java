@@ -1,5 +1,3 @@
-
-
 import javax.vecmath.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,6 +8,7 @@ import java.applet.*;
 import com.sun.j3d.utils.applet.MainFrame;
 
 public class Graphics_Final extends Applet {
+
     public static void main(String[] args) {
         new MainFrame(new Graphics_Final(), 640, 480);
     }
@@ -49,12 +48,15 @@ public class Graphics_Final extends Applet {
         mat.setDiffuseColor(100,0,0);
         ap.setMaterial(mat);
 
-        Sphere shape = new Sphere(0.5f, Sphere.GENERATE_NORMALS, 150, ap);
+       // Sphere shape = new Sphere(0.5f, Sphere.GENERATE_NORMALS, 150, ap);
         Transform3D tr = new Transform3D();
         tr.setScale(0.25);
         TransformGroup tg = new TransformGroup(tr);
-        tg.addChild(shape);
+        //tg.addChild(shape);
+        Cylinder cy = new Cylinder(.25f,1,ap);
+        tg.addChild(cy);
         root.addChild(tg);
+
         //view rotator
 
         // background and lights
