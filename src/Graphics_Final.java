@@ -53,7 +53,6 @@ public class Graphics_Final extends Applet {
         ap.setMaterial(mat);
 
         Transform3D tr = new Transform3D();
-        Transform3D cylin = new Transform3D();
         tr.setScale(0.25);
 
         TransformGroup tg = new TransformGroup(tr);
@@ -63,8 +62,6 @@ public class Graphics_Final extends Applet {
         tg.addChild(shape);
         bb.setMaterial(grey);
         Cylinder cy = new Cylinder(.1f,1,bb);
-        Vector3f vector = new Vector3f(-.2f,.1f , -.4f);
-
         tg.setTransform(tr);
         tg.addChild(cy);
 
