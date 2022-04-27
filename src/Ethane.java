@@ -8,14 +8,12 @@ import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
 import com.sun.j3d.utils.universe.*;
 import com.sun.j3d.utils.geometry.*;
 import java.applet.*;
-import java.sql.Wrapper;
-
 import com.sun.j3d.utils.applet.MainFrame;
 
-public class Graphics_Final extends Applet {
+public class Ethane extends Applet {
 
     public static void main(String[] args) {
-        new MainFrame(new Graphics_Final(), 640, 480);
+        new MainFrame(new Ethane(), 1000, 1000);
     }
 
     AmbientLight aLight;
@@ -28,7 +26,6 @@ public class Graphics_Final extends Applet {
         Canvas3D cv = new Canvas3D(gc);
         setLayout(new BorderLayout());
         add(cv, BorderLayout.CENTER);
-
         SimpleUniverse su = new SimpleUniverse(cv, 2);
         su.getViewingPlatform().setNominalViewingTransform();
         BranchGroup bg = createSceneGraph(su.getViewingPlatform().getMultiTransformGroup().getTransformGroup(0));
@@ -38,6 +35,7 @@ public class Graphics_Final extends Applet {
 
     Appearance ap;
     Appearance bb;
+    Appearance blue;
     private BranchGroup createSceneGraph(TransformGroup vtg) {
         //Branch Group
         BranchGroup root = new BranchGroup();
@@ -47,51 +45,59 @@ public class Graphics_Final extends Applet {
         //Appearance
         ap = new Appearance();
         bb = new Appearance();
-        Appearance cc = new Appearance();
-        //Text
-        Font3D font = new Font3D(new Font("SansSerif", Font.PLAIN, 1),
-                new FontExtrusion());
-
-        cc.setMaterial(new Material());
-        Text3D text = new Text3D(font, "Learning Molecules");
-        Shape3D shee = new Shape3D(text, cc);
-        Transform3D texts = new Transform3D();
-        texts.setScale(0.2);
-        texts.setTranslation(new Vector3f(-.2f, .2f, 0f));
-        TransformGroup ttt = new TransformGroup(texts);
-        ttt.addChild(shee);
-        root.addChild(ttt);
+        blue = new Appearance();
 
         Material grey = new Material();
         Material mat = new Material();
+        Material blu = new Material();
+        blu.setDiffuseColor(0,0,100);
         grey.setDiffuseColor(.5f,.5f,.5f);
-        mat.setDiffuseColor(100,0,0);
+        mat.setDiffuseColor(0,100,0);
         ap.setMaterial(mat);
         bb.setMaterial(grey);
-        
+        blue.setMaterial(blu);
+
         Transform3D tr = new Transform3D();
         Transform3D tr1 = new Transform3D();
         Transform3D tr2 = new Transform3D();
+        Transform3D tr3 = new Transform3D();
+        Transform3D tr4 = new Transform3D();
+        Transform3D tr5 = new Transform3D();
 
         tr.setScale(1);
-        tr1.setScale(0.25);
+        tr1.setScale(0.2);
         tr2.setScale(1);
 
         Vector3f vec = new Vector3f(0f,1f, .0f);
         Vector3f vec1 = new Vector3f(0f,0f, .0f);
         Vector3f vec2 = new Vector3f(0f, -1f, .0f);
+        Vector3f vec3 = new Vector3f(0f, -2f, 0f);
+        Vector3f vec4 = new Vector3f(0f, -3f, 0f);
+        Vector3f vec5 = new Vector3f(1f, -2f, 0f);
+
+
 
         tr.setTranslation(vec);
         tr1.setTranslation(vec1);
         tr2.setTranslation(vec2);
+        tr3.setTranslation(vec3);
+        tr4.setTranslation(vec4);
+        tr5.setTranslation(vec5);
+
 
         TransformGroup tg = new TransformGroup(tr);
         TransformGroup tg1 = new TransformGroup(tr1);
         TransformGroup tg2 = new TransformGroup(tr2);
+        TransformGroup tg3 = new TransformGroup(tr3);
+        TransformGroup tg4 = new TransformGroup(tr4);
+        TransformGroup tg5 = new TransformGroup(tr5);
 
         tg.setTransform(tr);
         tg1.setTransform(tr1);
         tg2.setTransform(tr2);
+        tg3.setTransform(tr3);
+        tg4.setTransform(tr4);
+        tg5.setTransform(tr5);
 
         tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         tg.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
@@ -102,21 +108,44 @@ public class Graphics_Final extends Applet {
         tg2.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         tg2.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
 
+        tg3.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        tg3.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+
+        tg4.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        tg4.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+
+        tg5.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        tg5.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+
+
         //Shapes
         Sphere shape = new Sphere(0.5f, Sphere.GENERATE_NORMALS, 150, ap);
         Cylinder cy = new Cylinder(.1f, Cylinder.GENERATE_NORMALS, bb);
-        Sphere shape1 = new Sphere(0.5f, Sphere.GENERATE_NORMALS, 150, ap);
+        Sphere shape1 = new Sphere(0.5f, Sphere.GENERATE_NORMALS, 150, blue);
+        Cylinder cy1 = new Cylinder(.1f, Cylinder.GENERATE_NORMALS, bb);
+        Sphere shape2 = new Sphere(.5f, Sphere.GENERATE_NORMALS, 150, ap);
+        Cylinder cy2 = new Cylinder(.1f, Cylinder.GENERATE_NORMALS, bb);
 
         cy.addChild(tg);
         cy.addChild(tg2);
+        cy.addChild(tg3);
+        cy.addChild(tg4);
+        cy.addChild(tg5);
 
-        tg.addChild(shape);     
+
+        tg.addChild(shape);
         tg1.addChild(cy);
         tg2.addChild(shape1);
-        
+        tg3.addChild(cy1);
+        tg4.addChild(shape2);
+        tg5.addChild(cy2);
+
         tg.setTransform(tr);
         tg1.setTransform(tr1);
         tg2.setTransform(tr2);
+        tg3.setTransform(tr3);
+        tg4.setTransform(tr4);
+        tg5.setTransform(tr5);
 
         //root.addChild(tg);
         root.addChild(tg1);
