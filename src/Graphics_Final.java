@@ -51,16 +51,32 @@ public class Graphics_Final extends Applet {
         //Text
         Font3D font = new Font3D(new Font("SansSerif", Font.PLAIN, 1),
                 new FontExtrusion());
-
         cc.setMaterial(new Material());
-        Text3D text = new Text3D(font, "Learning Molecules");
+
+        Text3D text = new Text3D(font, "Oxygen");
+        Text3D text2 = new Text3D(font, "O2 is a molecule that contains two atoms of Oxygen.");
+
         Shape3D shee = new Shape3D(text, cc);
-        Transform3D texts = new Transform3D();
-        texts.setScale(0.2);
-        texts.setTranslation(new Vector3f(-.2f, .2f, 0f));
-        TransformGroup ttt = new TransformGroup(texts);
+        Shape3D shee2 = new Shape3D(text2, cc);
+
+        Transform3D xxx = new Transform3D();
+        Transform3D xxx2 = new Transform3D();
+
+        xxx.setScale(0.2);
+        xxx2.setScale(0.084);
+
+        xxx.setTranslation(new Vector3f(-.35f, .55f, 0f));
+        xxx2.setTranslation(new Vector3f(-.97f, 0.43f, 0f));
+
+        TransformGroup ttt = new TransformGroup(xxx);
+        TransformGroup ttt2 = new TransformGroup(xxx2);
+
         ttt.addChild(shee);
+        ttt2.addChild(shee2);
+
+
         root.addChild(ttt);
+        root.addChild(ttt2);
 
         Material grey = new Material();
         Material mat = new Material();

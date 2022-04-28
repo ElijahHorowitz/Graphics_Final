@@ -36,11 +36,43 @@ public class Ozone extends Applet {
 
     Appearance ap;
     Appearance bb;
+    Appearance cc = new Appearance();
     private BranchGroup createSceneGraph(TransformGroup vtg) {
         //Branch Group
         BranchGroup root = new BranchGroup();
         BoundingSphere bounds = new BoundingSphere();
         bounds.setRadius(2);
+
+        //Text
+        Font3D font = new Font3D(new Font("SansSerif", Font.PLAIN, 1),
+                new FontExtrusion());
+        cc.setMaterial(new Material());
+
+        Text3D text = new Text3D(font, "Ozone");
+        Text3D text2 = new Text3D(font, "O3 is a molecule that contains three atoms of Oxygen.");
+
+        Shape3D shee = new Shape3D(text, cc);
+        Shape3D shee2 = new Shape3D(text2, cc);
+
+        Transform3D xxx = new Transform3D();
+        Transform3D xxx2 = new Transform3D();
+
+        xxx.setScale(0.2);
+        xxx2.setScale(0.08);
+
+        xxx.setTranslation(new Vector3f(-.35f, .5f, 0f));
+        xxx2.setTranslation(new Vector3f(-.96f, 0.4f, 0f));
+
+        TransformGroup ttt = new TransformGroup(xxx);
+        TransformGroup ttt2 = new TransformGroup(xxx2);
+
+        ttt.addChild(shee);
+        ttt2.addChild(shee2);
+
+
+        root.addChild(ttt);
+        root.addChild(ttt2);
+
 
         //Appearance
         ap = new Appearance();
