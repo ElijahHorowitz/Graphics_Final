@@ -10,10 +10,10 @@ import java.applet.*;
 
 import com.sun.j3d.utils.applet.MainFrame;
 
-public class Oxygon extends Applet {
+public class Oxygen extends Applet {
 
     public static void main(String[] args) {
-        new MainFrame(new Oxygon(), 640, 480);
+        new MainFrame(new Oxygen(), 640, 480);
     }
 
     AmbientLight aLight;
