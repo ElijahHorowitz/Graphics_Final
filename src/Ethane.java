@@ -46,6 +46,37 @@ public class Ethane extends Applet {
         ap = new Appearance();
         bb = new Appearance();
         blue = new Appearance();
+        Appearance cc = new Appearance();
+
+//Text
+        Font3D font = new Font3D(new Font("SansSerif", Font.PLAIN, 1),
+                new FontExtrusion());
+        cc.setMaterial(new Material());
+
+        Text3D text = new Text3D(font, "Methane");
+        Text3D text2 = new Text3D(font, "CH4 is a molecule that contains one Carbon atom and four Hydrogen atoms.");
+
+        Shape3D shee = new Shape3D(text, cc);
+        Shape3D shee2 = new Shape3D(text2, cc);
+
+        Transform3D xxx = new Transform3D();
+        Transform3D xxx2 = new Transform3D();
+
+        xxx.setScale(0.2);
+        xxx2.setScale(0.058);
+
+        xxx.setTranslation(new Vector3f(-.35f, .5f, 0f));
+        xxx2.setTranslation(new Vector3f(-.98f, 0.4f, 0f));
+
+        TransformGroup ttt = new TransformGroup(xxx);
+        TransformGroup ttt2 = new TransformGroup(xxx2);
+
+        ttt.addChild(shee);
+        ttt2.addChild(shee2);
+
+
+        root.addChild(ttt);
+        root.addChild(ttt2);
 
         Material grey = new Material();
         Material mat = new Material();
