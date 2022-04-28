@@ -63,6 +63,9 @@ public class Ethane extends Applet {
         Transform3D tr3 = new Transform3D();
         Transform3D tr4 = new Transform3D();
         Transform3D tr5 = new Transform3D();
+        Transform3D tr6 = new Transform3D();
+        Transform3D tr7 = new Transform3D();
+        Transform3D tr8 = new Transform3D();
 
         tr.setScale(1);
         tr1.setScale(0.2);
@@ -73,7 +76,15 @@ public class Ethane extends Applet {
         Vector3f vec2 = new Vector3f(0f, -1f, .0f);
         Vector3f vec3 = new Vector3f(0f, -2f, 0f);
         Vector3f vec4 = new Vector3f(0f, -3f, 0f);
-        Vector3f vec5 = new Vector3f(1f, -2f, 0f);
+        Vector3d vec5 = new Vector3d(1f, -1f, 0f);
+        Vector3d vec6 = new Vector3d(-1f, -1f, 0f);
+        Vector3f vec7 = new Vector3f(-2f, -1f, 0f);
+        Vector3f vec8 = new Vector3f(2f, -1f,0);
+
+        AxisAngle4d rot = new AxisAngle4d();
+        rot.set(vec5, 90);
+        rot.setZ(1);
+
 
 
 
@@ -83,7 +94,11 @@ public class Ethane extends Applet {
         tr3.setTranslation(vec3);
         tr4.setTranslation(vec4);
         tr5.setTranslation(vec5);
-
+        tr5.setRotation(rot);
+        tr6.setTranslation(vec6);
+        tr6.setRotation(rot);
+        tr7.setTranslation(vec7);
+        tr8.setTranslation(vec8);
 
         TransformGroup tg = new TransformGroup(tr);
         TransformGroup tg1 = new TransformGroup(tr1);
@@ -91,6 +106,9 @@ public class Ethane extends Applet {
         TransformGroup tg3 = new TransformGroup(tr3);
         TransformGroup tg4 = new TransformGroup(tr4);
         TransformGroup tg5 = new TransformGroup(tr5);
+        TransformGroup tg6 = new TransformGroup(tr6);
+        TransformGroup tg7 = new TransformGroup(tr7);
+        TransformGroup tg8 = new TransformGroup(tr8);
 
         tg.setTransform(tr);
         tg1.setTransform(tr1);
@@ -98,6 +116,9 @@ public class Ethane extends Applet {
         tg3.setTransform(tr3);
         tg4.setTransform(tr4);
         tg5.setTransform(tr5);
+        tg6.setTransform(tr6);
+        tg7.setTransform(tr7);
+        tg8.setTransform(tr8);
 
         tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         tg.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
@@ -117,6 +138,15 @@ public class Ethane extends Applet {
         tg5.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         tg5.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
 
+        tg6.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        tg6.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+
+        tg7.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        tg7.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+
+        tg8.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        tg8.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+
 
         //Shapes
         Sphere shape = new Sphere(0.5f, Sphere.GENERATE_NORMALS, 150, ap);
@@ -125,12 +155,18 @@ public class Ethane extends Applet {
         Cylinder cy1 = new Cylinder(.1f, Cylinder.GENERATE_NORMALS, bb);
         Sphere shape2 = new Sphere(.5f, Sphere.GENERATE_NORMALS, 150, ap);
         Cylinder cy2 = new Cylinder(.1f, Cylinder.GENERATE_NORMALS, bb);
+        Cylinder cy3 = new Cylinder(.1f, Cylinder.GENERATE_NORMALS, bb);
+        Sphere shape3 = new Sphere(.5f, Sphere.GENERATE_NORMALS, 150, ap);
+        Sphere shape4 = new Sphere(.5f, Sphere.GENERATE_NORMALS, 150, ap);
 
         cy.addChild(tg);
         cy.addChild(tg2);
         cy.addChild(tg3);
         cy.addChild(tg4);
         cy.addChild(tg5);
+        cy.addChild(tg6);
+        cy.addChild(tg7);
+        cy.addChild(tg8);
 
 
         tg.addChild(shape);
@@ -139,6 +175,9 @@ public class Ethane extends Applet {
         tg3.addChild(cy1);
         tg4.addChild(shape2);
         tg5.addChild(cy2);
+        tg6.addChild(cy3);
+        tg7.addChild(shape3);
+        tg8.addChild(shape4);
 
         tg.setTransform(tr);
         tg1.setTransform(tr1);
@@ -146,6 +185,9 @@ public class Ethane extends Applet {
         tg3.setTransform(tr3);
         tg4.setTransform(tr4);
         tg5.setTransform(tr5);
+        tg6.setTransform(tr6);
+        tg7.setTransform(tr7);
+        tg8.setTransform(tr8);
 
         //root.addChild(tg);
         root.addChild(tg1);
