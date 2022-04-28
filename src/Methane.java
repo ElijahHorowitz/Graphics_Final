@@ -1,6 +1,5 @@
 import javax.vecmath.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.media.j3d.*;
 
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
@@ -10,10 +9,10 @@ import com.sun.j3d.utils.geometry.*;
 import java.applet.*;
 import com.sun.j3d.utils.applet.MainFrame;
 
-public class Ethane extends Applet {
+public class Methane extends Applet {
 
     public static void main(String[] args) {
-        new MainFrame(new Ethane(), 1000, 1000);
+        new MainFrame(new Methane(), 1000, 1000);
     }
 
     AmbientLight aLight;

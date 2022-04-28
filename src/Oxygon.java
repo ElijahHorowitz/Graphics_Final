@@ -1,6 +1,5 @@
 import javax.vecmath.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.media.j3d.*;
 
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
@@ -8,14 +7,13 @@ import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
 import com.sun.j3d.utils.universe.*;
 import com.sun.j3d.utils.geometry.*;
 import java.applet.*;
-import java.sql.Wrapper;
 
 import com.sun.j3d.utils.applet.MainFrame;
 
-public class Graphics_Final extends Applet {
+public class Oxygon extends Applet {
 
     public static void main(String[] args) {
-        new MainFrame(new Graphics_Final(), 640, 480);
+        new MainFrame(new Oxygon(), 640, 480);
     }
 
     AmbientLight aLight;
