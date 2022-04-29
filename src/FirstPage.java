@@ -19,12 +19,16 @@ import com.sun.j3d.utils.universe.*;
 import com.sun.j3d.utils.applet.MainFrame;
 
 public class FirstPage extends Applet {
-    public static void main(String s[]) {
+    /*public static void main(String s[]) {
         System.setProperty("sun.awt.noerasebackground", "true");
         new MainFrame(new FirstPage(), 640, 480);
+    }*/
+
+    public FirstPage(){
+
     }
 
-    public void init() {
+    /*public void init() {
         GraphicsConfiguration gc = SimpleUniverse.getPreferredConfiguration();
         Canvas3D cv = new Canvas3D(gc);
         setLayout(new BorderLayout());
@@ -34,9 +38,9 @@ public class FirstPage extends Applet {
         SimpleUniverse su = new SimpleUniverse(cv);
         su.getViewingPlatform().setNominalViewingTransform();
         su.addBranchGraph(bg);
-    }
+    }*/
 
-    private BranchGroup createSceneGraph() {
+    public BranchGroup createSceneGraph() {
         BranchGroup root = new BranchGroup();
 
         Appearance ap = new Appearance();
