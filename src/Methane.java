@@ -11,15 +11,19 @@ import com.sun.j3d.utils.applet.MainFrame;
 
 public class Methane extends Applet {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new MainFrame(new Methane(), 1000, 1000);
+    }*/
+
+    public Methane(){
+
     }
 
     AmbientLight aLight;
     DirectionalLight dLight;
     DirectionalLight dLight2;
 
-    public void init() {
+    /*public void init() {
         // create canvas
         GraphicsConfiguration gc = SimpleUniverse.getPreferredConfiguration();
         Canvas3D cv = new Canvas3D(gc);
@@ -30,12 +34,12 @@ public class Methane extends Applet {
         BranchGroup bg = createSceneGraph(su.getViewingPlatform().getMultiTransformGroup().getTransformGroup(0));
         bg.compile();
         su.addBranchGraph(bg);
-    }
+    }*/
 
     Appearance ap;
     Appearance bb;
     Appearance blue;
-    private BranchGroup createSceneGraph(TransformGroup vtg) {
+    public BranchGroup createSceneGraph() {
         //Branch Group
         BranchGroup root = new BranchGroup();
         BoundingSphere bounds = new BoundingSphere();
